@@ -23,6 +23,9 @@ class COVID19Dataset(Dataset):
             feats = list(range(93))
         else:
             # TODO: Using 40 states & 2 tested_positive features (indices = 57 & 75)
+            feats = list(range(40))
+            feats.append(57)
+            feats.append(75)
             pass
 
         if mode == 'test':
@@ -47,10 +50,11 @@ class COVID19Dataset(Dataset):
             self.target = torch.FloatTensor(target[indices])
 
         # Normalize features (you may remove this part to see what will happen)
+        '''
         self.data[:, 40:] = \
             (self.data[:, 40:] - self.data[:, 40:].mean(dim=0, keepdim=True)) \
             / self.data[:, 40:].std(dim=0, keepdim=True)
-
+        '''
         self.dim = self.data.shape[1]
 
         print('Finished reading the {} set of COVID19 Dataset ({} samples found, each dim = {})'
@@ -93,13 +97,12 @@ config = {
 }
 
 
-target_only = False
+target_only = True
 tr_path = '../../data/hw1/covid.train.csv'  # path to training data
 tt_path = '../../data/hw1/covid.test.csv'   # path to testing data
 
-tr_set = prep_dataloader(tr_path, 'train', config['batch_size'], target_only=target_only)
-
 '''
+tr_set = prep_dataloader(tr_path, 'train', config['batch_size'], target_only=target_only)
 print(tr_set)
 i = 0
 for x, y in tr_set:
