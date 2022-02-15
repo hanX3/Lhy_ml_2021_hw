@@ -91,7 +91,9 @@ class COVID19Dataset(Dataset):
             feats = list(range(93))
         else:
             # TODO: Using 40 states & 2 tested_positive features (indices = 57 & 75)
-            pass
+            feats = list(range(40))
+            feats.append(57)
+            feats.append(75)
 
         if mode == 'test':
             # Testing data
@@ -252,7 +254,7 @@ def test(tt_set, model, device):
 ##Setup Hyper-parameters
 device = get_device()                 # get the current available device ('cpu' or 'cuda')
 os.makedirs('models', exist_ok=True)  # The trained model will be saved to ./models/
-target_only = False                   # TODO: Using 40 states & 2 tested_positive features
+target_only = True                   # TODO: Using 40 states & 2 tested_positive features
 
 # TODO: How to tune these hyper-parameters to improve your model's performance?
 config = {
@@ -264,7 +266,7 @@ config = {
         'momentum': 0.9              # momentum for SGD
     },
     'early_stop': 200,               # early stopping epochs (the number epochs since your model's last improvement)
-    'save_path': 'models/model_baseline.pth'  # your model will be saved here
+    'save_path': 'models/model_test.pth'  # your model will be saved here
 }
 
 
@@ -298,4 +300,4 @@ def save_pred(preds, file):
             writer.writerow([i, p])
 
 preds = test(tt_set, model, device)  # predict COVID-19 cases with your model
-save_pred(preds, 'pred_baseline.csv')         # save prediction file to pred.csv
+save_pred(preds, 'pred_test.csv')         # save prediction file to pred.csv

@@ -1,3 +1,6 @@
+# basic
+print('%02d-%02d' % (3, 1)), 3-1
+
 # list
 
 ## List Comprehension
