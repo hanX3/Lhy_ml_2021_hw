@@ -1,11 +1,11 @@
 # basic
-print('%02d-%02d' % (3, 1)), 3-1
+print('%02d-%02d' % (3, 1)) ==> 3-1
 
 # list
 
 ## List Comprehension
 l = [x * x for x in range(1, 11) if x % 2 == 0]
-[4, 16, 36, 64, 100]
+==> [4, 16, 36, 64, 100]
 
 ## slice
 ### one dimension list, two dimension list can look as one dimension list
@@ -27,12 +27,14 @@ csv.reader(csvfile), read csv file and save each row data into a list
 
 # numpy
 
+
+
 # torch
 ## mean()
 a.mean(dim=0, keepdim=True), get mean value in dimension 0, and keep output dimension.
-torch.Size(4, 53) --> torch.Size(1, 53)
+torch.Size(4, 53)  ==> torch.Size(1, 53)
 a.mean(dim=1, keepdim=True), get mean value in dimension 1, and keep output dimension.
-torch.Size(4, 53) --> torch.Size(4, 1)
+torch.Size(4, 53) ==> torch.Size(4, 1)
 
 ## shape
 return dimension of tensor
